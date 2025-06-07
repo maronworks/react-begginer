@@ -1,6 +1,6 @@
 import { useState } from "react"
 import AddTodoForm from "./components/AddTodoForm"
-import TodoItem from "./components/TodoItem"
+import TodoList from "./components/TodoList"
 import { dummyData } from "./data/todos"
 
 function App() {
@@ -33,14 +33,10 @@ function App() {
 				<AddTodoForm
 					onSubmit={addTodo}
 				/>
-				<div className="space-y-2">
-					{todos.map(todo => (
-						<TodoItem
-							key={todo.id}
-							todo={todo}
-							onCompletedChange={setTodoCompleted}
-						/>
-					))}</div>
+				<TodoList
+					todos={todos}
+					onCompleteChange={setTodoCompleted}
+				/>
 			</div>
 		</main>
 	)
