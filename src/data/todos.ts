@@ -4,7 +4,7 @@ export const dummyData: Todo[] = [
     {
         id: 1,
         title: 'Ask crushie to go out!',
-        completed: false,
+        completed: true,
     },
     {
         id: 2,
