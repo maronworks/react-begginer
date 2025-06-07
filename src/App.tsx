@@ -1,11 +1,20 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import AddTodoForm from "./components/AddTodoForm"
 import TodoList from "./components/TodoList"
 import TodoSummary from "./components/TodoSummary"
 import { dummyData } from "./data/todos"
+import type { Todo } from "./types/Todo"
 
 function App() {
-	const [todos, setTodos] = useState(dummyData)
+	const [todos, setTodos] = useState(() => {
+		const savedTodos: Todo[] = JSON.parse(localStorage.getItem('todos') || '[]')
+		return savedTodos.length > 0 ? savedTodos : dummyData
+	})
+
+	// NOTE: THIS WILL ONLY TRIGGER WHEN TODO STATE CHANGES
+	useEffect(() => {
+		localStorage.setItem('todos', JSON.stringify(todos))
+	}, [todos])
 
 	const setTodoCompleted = (id: number, completed: boolean) => {
 		console.log(`Todo with id ${id} is now ${completed ? "completed" : "not completed"}`)
