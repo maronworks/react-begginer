@@ -27,6 +27,7 @@ function TodoList({
 					key={todo.id}
 					todo={todo}
 					onCompletedChange={onCompleteChange}
+					onDelete={onDelete}
 				/>
 			))}
 		</div>
